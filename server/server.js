@@ -11,12 +11,10 @@ module.exports = function(hackerDS) {
 
   hackerDS.on('music.start', function(state){
     if(state){
-      if(!runningPlayer){
-        runningPlayer = child_process.execFile('cvlc', ['http://somafm.com/groovesalad.pls']);
-      }
+      child_process.execFile('mpc', ['add', 'http://uwstream1.somafm.com:80']);
+      child_process.execFile('mpc', ['play', '1']);
     } else {
-      runningPlayer.kill();
-      runningPlayer = null;
+      child_process.execFile('mpc', ['stop']);
     }
   })
 }
